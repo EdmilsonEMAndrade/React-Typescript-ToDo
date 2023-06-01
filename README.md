@@ -14,17 +14,17 @@ This is a Todo App built using React and TypeScript. The app allows users to man
 
 ## Docker
 <div align='center'>
-<img src="../src/asset/docker.png"  height="50" alt="docker"/> 
+<img src="../src/assets/docker.png"  height="50" alt="docker"/> 
   <br/>
   <p>docker run -d -p 5173:5173 --name Todo edmilsonemandrade/typescript-react-todo</p>
   <br/>
-  After running the Docker image, go to: => <a target="_blank" href="http://localhost:5173/">Project ToDo</a>
+  After running the Docker image, go to: => <a href="http://localhost:5173/" target="_blank">Project ToDo</a>
 </div>
 
 ## Website images
 
-<img src="../src/asset/screen_no_tasks.png"  height="50" alt="image demonstrating the page without tasks"/>
-<img src="../src/asset/screen_with_tasks.png"  height="50" alt="image demonstrating the page with tasks"/>
+<img src="../src/assets/screen_no_tasks.png"  height="50" alt="image demonstrating the page without tasks"/>
+<img src="../src/assets/screen_with_tasks.png"  height="50" alt="image demonstrating the page with tasks"/>
 
 # Technologies used
 - Typescript
@@ -36,12 +36,12 @@ This is a Todo App built using React and TypeScript. The app allows users to man
 # How to run the project
 
 ## Prerequisites
-<a target="_blank" href="https://nodejs.org/en">Node</a>
+<a href="https://nodejs.org/en" target="_blank">Node</a>
 
 ## Command
 - npm i
 - npm run dev
-- go to: => <a target="_blank" href="http://localhost:5173/">Project ToDo</a>
+- go to: => <a href="http://localhost:5173/" target="_blank">Project ToDo</a>
 
 # Author
-<a target="_blank" href="https://www.linkedin.com/in/eemandrade/">Edmilson Emmanuel Moura Andrade</a>
+<a href="https://www.linkedin.com/in/eemandrade/" target="_blank">Edmilson Emmanuel Moura Andrade</a>
