@@ -23,8 +23,8 @@ This is a Todo App built using React and TypeScript. The app allows users to man
 
 ## Website images
 
-<img src="./src/assets/screen_no_tasks.png"  height="50" alt="image demonstrating the page without tasks"/>
-<img src="./src/assets/screen_with_tasks.png"  height="50" alt="image demonstrating the page with tasks"/>
+<img src="./src/assets/screen_no_tasks.png"  height="300" alt="image demonstrating the page without tasks"/>
+<img src="./src/assets/screen_with_tasks.png"  height="300" alt="image demonstrating the page with tasks"/>
 
 # Technologies used
 - Typescript
