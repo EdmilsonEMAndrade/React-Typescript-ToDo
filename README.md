@@ -14,7 +14,7 @@ This is a Todo App built using React and TypeScript. The app allows users to man
 
 ## Docker
 <div align='center'>
-<img src="../src/assets/docker.png"  height="50" alt="docker"/> 
+<img src="./src/assets/docker.png"  height="50" alt="docker"/> 
   <br/>
   <p>docker run -d -p 5173:5173 --name Todo edmilsonemandrade/typescript-react-todo</p>
   <br/>
@@ -23,8 +23,8 @@ This is a Todo App built using React and TypeScript. The app allows users to man
 
 ## Website images
 
-<img src="../src/assets/screen_no_tasks.png"  height="50" alt="image demonstrating the page without tasks"/>
-<img src="../src/assets/screen_with_tasks.png"  height="50" alt="image demonstrating the page with tasks"/>
+<img src="./src/assets/screen_no_tasks.png"  height="50" alt="image demonstrating the page without tasks"/>
+<img src="./src/assets/screen_with_tasks.png"  height="50" alt="image demonstrating the page with tasks"/>
 
 # Technologies used
 - Typescript
