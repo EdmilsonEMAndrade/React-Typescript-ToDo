@@ -1,5 +1,6 @@
 import { CheckCircle, Trash } from "@phosphor-icons/react";
-import { ToDoType } from "../../interface/todo.interface";
+import { ToDoType } from "../../../../interfaces/todo.interface";
+import { StyledWithTaskContainer } from "./WithTasks.styles";
 
 interface TasksDoneProps {
     todo: ToDoType,
@@ -17,10 +18,10 @@ export function TasksDone({todo, onDeleteTask, onChangeStatusTask}: TasksDonePro
         onDeleteTask(idToDelete)
     }
     return(
-        <div className="withTasks">
+        <StyledWithTaskContainer>
             <CheckCircle className="checkCircle" size={24} weight="fill" onClick={() => handleChangeStatusTask(todo.id)}/>
             <del>{todo.text}</del>
             <Trash onClick={() => handleDeleteTask(todo.id)} className="trash" size={24}/>
-        </div>
+        </StyledWithTaskContainer>
     )
 }

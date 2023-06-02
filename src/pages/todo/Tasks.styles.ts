@@ -59,19 +59,7 @@ export const BodyTaskContainer = styled.body`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    header{
-        width: calc(55vw + 5.8rem);
-        div{
-            margin: 2rem 0 0.75rem 0;
-            display: flex;
-            justify-content: space-between;
-        }
-    }
-    header div{
-        font-size: 0.875rem;
-        display: flex;
-        margin-bottom: 1.5rem;
-    }
+
     .tasksCreated{
         margin-right: 0.5rem;
         color: ${props => props.theme["--blue"]};
@@ -86,51 +74,6 @@ export const BodyTaskContainer = styled.body`
         border-radius: 10px;
         padding: 0 .5rem;
     }
-
-    .withoutTasks{
-        width: calc(55vw + 5.8rem);
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        flex-direction: column;
-        font-size: 1rem;
-        border-top: 1px solid ${props => props.theme["--gray-100"]};
-        border-radius: 8px;
-        padding-top: 2rem;
-    }
-
-    .withTasks{
-        background: ${props => props.theme["--gray-400"]};
-        border-radius: 8px;
-        padding: .5rem;
-        display: flex;
-        justify-content: space-between;
-        width: calc(55vw + 5.8rem);
-    }
-    .withTasks + .withTasks{
-        margin-top: 0.75rem;
-    }
-    .withTasks p, del{
-        text-align: start;
-        width: calc(55vw);
-    }
-
-    .circle{
-        color: ${props => props.theme["--blue"]};
-    }
-    .circle:hover{
-        color: ${props => props.theme["--blue-dark"]};
-    }
-    .checkCircle{
-        color: ${props => props.theme["--purple"]};
-    }
-    .checkCircle:hover{
-        color: ${props => props.theme["--purple-dark"]};
-    }
-    .trash:hover{
-        color: ${props => props.theme["--danger"]};
-    }
-
-    
     
 `
+
