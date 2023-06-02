@@ -1,11 +1,16 @@
-import { PlusCircle, ClipboardText } from "@phosphor-icons/react"
-import { FormContainer, BodyTaskContainer } from "./Tasks.styles"
-import { ToDoType } from "../../interface/todo.interface"
+import { PlusCircle } from "@phosphor-icons/react";
 import { FormEvent, useState } from "react";
-import { TasksTodo } from "./TasksToDo";
-import { TasksDone } from "./TasksDone";
 
-interface TasksProps {
+import { TasksTodo } from "./components/withTasks/TasksToDo";
+import { TasksDone } from "./components/withTasks/TasksDone";
+import { WithoutTasks } from "./components/withoutTasks/WithoutTasks";
+
+import { FormContainer, BodyTaskContainer } from "./Tasks.styles";
+
+import { ToDoType } from "../../interfaces/todo.interface";
+import { IndicatorTasks } from "./components/indicatorTasks/indicatorTasks";
+
+export interface TasksProps {
     listaToDos: ToDoType[];
 }
 export function Tasks({listaToDos} : TasksProps) {
@@ -17,12 +22,11 @@ export function Tasks({listaToDos} : TasksProps) {
     function handleCreateNewTaks(event: FormEvent): void{
         event.preventDefault()
         if(newTask.trim() === ""){
-            console.log("error")
             setInputError(true);
             return
         }
-        setToDoState([...toDoState, {
-            id: toDoState.length > 0 ? toDoState[toDoState.length -1].id + 1: 1,
+        setToDoState((state) => [...state, {
+            id: new Date().getTime(),
             isDone: false,
             text: newTask
         }])
@@ -67,33 +71,12 @@ export function Tasks({listaToDos} : TasksProps) {
                 <button type="submit" onClick={handleCreateNewTaks}>Create<PlusCircle size={16} className="plus" /></button>
             </FormContainer>
             <BodyTaskContainer>
-                <header>
-                    <div>
-                        <div>
-                            <p className="tasksCreated">Tasks created</p>
-                            <span className="highlightedNumber">{toDoState.length}</span>
-                        </div>
-                        <div>
-                            <p className="tasksDone">Done</p>
-                            <span className="highlightedNumber">{toDoState.reduce((accumulator, currentValue) => {
-                                    if(currentValue.isDone){
-                                        accumulator +=1;
-                                    }
-                                    return accumulator;
-                                },0)} out of {toDoState.length}
-                            </span>
-                        </div>
-                    </div>
-                </header>
+                <IndicatorTasks listaToDos={toDoState}/>
                 <body>
                     {
                         toDoState.length === 0 ? 
                   
-                                <div className="withoutTasks">
-                                    <ClipboardText size={56} opacity={0.5}/>
-                                    <strong>You don't have tasks registered yet</strong>
-                                    <p>Create tasks and organize your to-do items</p>
-                                </div>
+                                <WithoutTasks/>
                             
                         :
                             toDoState.map((todo)=>{

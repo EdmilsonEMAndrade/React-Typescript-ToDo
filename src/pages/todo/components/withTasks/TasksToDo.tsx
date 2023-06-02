@@ -1,5 +1,6 @@
 import { Circle, Trash } from "@phosphor-icons/react";
-import { ToDoType } from "../../interface/todo.interface";
+import { ToDoType } from "../../../../interfaces/todo.interface";
+import { StyledWithTaskContainer } from "./WithTasks.styles";
 
 interface TasksToDoProps {
     todo: ToDoType,
@@ -17,10 +18,10 @@ export function TasksTodo({todo, onDeleteTask, onChangeStatusTask}: TasksToDoPro
         onDeleteTask(idToDelete)
     }
     return(
-        <div className="withTasks">
+        <StyledWithTaskContainer>
             <Circle className="circle" size={24} onClick={() => handleChangeStatusTask(todo.id)}/>
             <p>{todo.text}</p>
             <Trash onClick={() => handleDeleteTask(todo.id)} className="trash" size={24}/>
-        </div>
+        </StyledWithTaskContainer>
     )
 }
