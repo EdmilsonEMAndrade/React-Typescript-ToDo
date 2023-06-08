@@ -14,9 +14,10 @@ body{
 }
 
 body, input, textarea, button{
-    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
 }
 
 :focus{
