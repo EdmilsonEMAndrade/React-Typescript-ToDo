@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const WithTaskContainer = styled.div`
-  width: calc(55vw + 5.8rem);
+  width: ${(props) => props.theme['--width-center']};
   background: ${(props) => props.theme['--gray-400']};
   border-radius: 8px;
   min-height: 3rem;
@@ -12,7 +12,7 @@ export const WithTaskContainer = styled.div`
   p,
   del {
     text-align: start;
-    width: calc(55vw);
+    width: 55vw;
     margin: 0.5rem 0;
   }
 

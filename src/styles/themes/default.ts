@@ -16,4 +16,6 @@ export const defaultTheme = {
 
   '--purple-dark': '#5E60CE',
   '--purple': '#8284FA',
+
+  '--width-center': 'calc(55vw + 5.8rem)'
 }
