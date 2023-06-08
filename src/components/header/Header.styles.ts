@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   height: 12.5rem;
-  width: 100vw;
+  width: 100%;
   background-color: ${(props) => props.theme['--gray-900']};
   display: flex;
   align-items: center;
@@ -10,13 +10,10 @@ export const HeaderContainer = styled.header`
 
   img {
     height: 3rem;
-    margin: auto;
   }
 `
 export const DivHeaderContainer = styled.div`
   
-  position: absolute;
-  margin-left: calc(55vw + 1.5rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,8 +24,6 @@ export const DivHeaderContainer = styled.div`
     height: 2rem;
     width: 2rem;
     color: ${(props) => props.theme['--gray-100']};
-
-   
 
     border-bottom: 3px solid transparent;
     border-top: 3px solid transparent;

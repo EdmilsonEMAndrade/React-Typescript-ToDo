@@ -7,7 +7,7 @@ export const TimerContainer = styled.main`
     align-items: center;
     justify-content: center;
     & form {
-            display: flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
         gap: 3.5rem;
@@ -24,6 +24,14 @@ export const FormContainer = styled.div`
     font-size: 1.125rem;
     font-weight: bold;
     flex-wrap: wrap;
+
+    @media(max-width: 700px){
+        font-size: 1rem;
+        label {
+            margin: 0.5rem;
+        }
+    }
+
 `
 
 export const ButtonContainer = styled.button`
@@ -66,6 +74,24 @@ export const CountdownContainer = styled.div`
         border-radius: 8px;
         background-color: ${(props) => props.theme["--gray-900"]};
     }
+
+    @media(max-width: 700px){
+        font-size: 5rem;
+        line-height: 4rem;
+    }
+
+    @media(max-width: 415px){
+        font-size: 3.75rem;
+        line-height: 3rem;
+        span{
+            padding: 1rem 0.5rem;
+        }
+        
+    }
+    @media(max-width: 280px){
+        font-size: 2.5rem;
+        line-height: 2rem;
+    }
 `
 
 export const CountdownSeparator = styled.div`
@@ -75,6 +101,11 @@ export const CountdownSeparator = styled.div`
     overflow: hidden;
     display: flex;
     justify-content: center;
+
+    @media(max-width: 280px){
+        padding: 0;
+        width: 2rem;
+    }
 `
 const InputContainerStyle = styled.input`
     background: transparent;
