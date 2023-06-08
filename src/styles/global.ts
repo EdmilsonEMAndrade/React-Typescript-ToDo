@@ -21,7 +21,7 @@ body, input, textarea, button{
 
 :focus{
     outline: transparent;
-    box-shadow: 0 0 0 2px ${(props) => props.theme['--gray-100']};
+    box-shadow: 0 0 0 2px ${(props) => props.theme['--blue-dark']};
 }
 
 `

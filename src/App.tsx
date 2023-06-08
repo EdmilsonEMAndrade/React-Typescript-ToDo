@@ -1,9 +1,7 @@
-import { Header } from './components/header/Header'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
-import { Tasks } from './pages/todo/Tasks'
-import { BrowserRouter, NavLink } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
 
 function App() {
