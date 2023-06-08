@@ -1,5 +1,5 @@
-export interface ToDoType{
-    id: number,
-    text: string,
-    isDone: boolean
+export interface ToDoType {
+  id: number
+  text: string
+  isDone: boolean
 }
