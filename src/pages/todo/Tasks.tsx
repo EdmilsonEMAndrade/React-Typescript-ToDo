@@ -8,7 +8,7 @@ import { WithoutTasks } from "./components/withoutTasks/WithoutTasks";
 import { FormContainer, BodyTaskContainer } from "./Tasks.styles";
 
 import { ToDoType } from "../../interfaces/todo.interface";
-import { IndicatorTasks } from "./components/indicatorTasks/indicatorTasks";
+import { IndicatorTasks } from "./components/indicatorTasks/IndicatorTasks";
 
 export interface TasksProps {
     listaToDos: ToDoType[];
