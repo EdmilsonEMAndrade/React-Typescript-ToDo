@@ -53,7 +53,7 @@ export const FormContainer = styled.form`
     }
 `
 
-export const BodyTaskContainer = styled.body`
+export const BodyTaskContainer = styled.div`
 
     display: flex;
     align-items: center;
