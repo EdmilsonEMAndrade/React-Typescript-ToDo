@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { DefaultTheme, css, keyframes } from "styled-components";
 
 export const TimerContainer = styled.main`
     height: 100%;
@@ -34,18 +34,31 @@ export const FormContainer = styled.div`
 
 `
 
-export const ButtonContainer = styled.button`
+export const CicleDivButtons = styled.div`
+    width: 100%;
+`
+const ButtonContainerColor = {
+    green: '--green',
+    red: '--red',
+    yellow: '--yellow'
+} as const
+
+interface ButtonContainerProps extends CountupSeparatorProps {
+    color: 'green' | 'red' | 'yellow'
+}
+export const ButtonContainer = styled.button<ButtonContainerProps>`
     width: 100%;
     padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: ${(props) => props.theme["--green"]};
+    background: ${(props) => props.theme[ButtonContainerColor[props.color]]};
     font-weight: bold;
     color: ${(props) => props.theme["--gray-100"]};
     border-radius: 8px;
     cursor: pointer;
+    display: ${(props) => (!props.isAtiveCycle ? 'none' : 'flex')};
 
     &:disabled{
         opacity: 0.7;
@@ -53,9 +66,29 @@ export const ButtonContainer = styled.button`
     }
 
     &:not(:disabled):hover {
-        background: ${(props) => props.theme["--green-dark"]};
+        background: ${(props) => props.theme[ButtonContainerColor[props.color] + "-dark" as keyof DefaultTheme]} ;
     }
 
+    ${(props) =>
+        props.isAtiveCycle &&
+        css`
+            &:first-child {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            &:last-child {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        `}
+
+    
+
+`
+
+export const CicleAtiveDivButtons = styled.div`
+    display: flex;
 `
 
 export const CountupContainer = styled.div`

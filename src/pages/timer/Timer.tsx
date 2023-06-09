@@ -1,5 +1,5 @@
-import { Play } from "@phosphor-icons/react";
-import { ButtonContainer, CountupContainer, CountupSeparator, FormContainer, InputMinutesAmount, InputTask, TimerContainer } from "./Timer.styles";
+import { Pause, Play, Stop } from "@phosphor-icons/react";
+import { ButtonContainer, CicleAtiveDivButtons, CicleDivButtons, CountupContainer, CountupSeparator, FormContainer, InputMinutesAmount, InputTask, TimerContainer } from "./Timer.styles";
 import { useState, FormEvent, useEffect } from "react";
 export function Timer() {
   const [countInit, setCountInit] = useState(0);
@@ -8,7 +8,7 @@ export function Timer() {
 
   function handleConuntup(event: FormEvent): void {
     event.preventDefault()
-    setIsAtiveCycle(!isAtiveCycle);
+    setIsAtiveCycle(true);
     setCountInit(new Date().getTime());
   }
 
@@ -16,18 +16,19 @@ export function Timer() {
     let interval: number;
     if (isAtiveCycle) {
       interval = setInterval(() => {
-        setAmoutSecondPassed(Math.floor(((new Date().getTime() - countInit) / 1000)));
+        setAmoutSecondPassed(Math.floor(((new Date().getTime() - countInit) / 1000)) + 86395);
       }, 1000);
     }
     return () => clearInterval(interval);
   }, [isAtiveCycle]);
+
   const daysAmount = Math.floor(amoutSecondPassed / 86400);
   const hoursAmount = Math.floor((amoutSecondPassed / 3600) - (daysAmount * 24));
-  const minutesAmount = Math.floor((amoutSecondPassed / 60) - (hoursAmount * 60));
+  const minutesAmount = Math.floor((amoutSecondPassed / 60) - (hoursAmount * 60) - (daysAmount * 24 * 60));
   const secondsAmount = amoutSecondPassed % 60;
 
   const days = String(daysAmount);
-  const hours = daysAmount > 0 && hoursAmount < 10 ? String(hoursAmount).padStart(2, "0") : String(hoursAmount);
+  const hours = daysAmount > 0 ? String(hoursAmount).padStart(2, "0") : String(hoursAmount);
   const minutes = String(minutesAmount).padStart(2, "0");
   const seconds = String(secondsAmount).padStart(2, "0");
 
@@ -63,11 +64,24 @@ export function Timer() {
           <span>{seconds[0]}</span>
           <span>{seconds[1]}</span>
         </CountupContainer>
-
-        <ButtonContainer type="submit" onClick={handleConuntup} disabled={isAtiveCycle}>
-          <Play size={24} />
-          Play
-        </ButtonContainer>
+        <CicleDivButtons>
+          <div>
+            <ButtonContainer color="green" isAtiveCycle={!isAtiveCycle} type="submit" onClick={handleConuntup} disabled={isAtiveCycle}>
+              <Play size={24} />
+              Play
+            </ButtonContainer>
+          </div>
+          <CicleAtiveDivButtons>
+            <ButtonContainer color="yellow" isAtiveCycle={isAtiveCycle} type="submit" onClick={handleConuntup}>
+              <Pause size={24} />
+              Pause
+            </ButtonContainer>
+            <ButtonContainer color="red" isAtiveCycle={isAtiveCycle} type="submit" onClick={handleConuntup}>
+              <Stop size={24} />
+              Fineshed
+            </ButtonContainer>
+          </CicleAtiveDivButtons>
+        </CicleDivButtons>
       </form>
     </TimerContainer >
   )
