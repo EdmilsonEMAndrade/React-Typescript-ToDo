@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const TimerContainer = styled.main`
     height: 100%;
@@ -58,7 +58,7 @@ export const ButtonContainer = styled.button`
 
 `
 
-export const CountdownContainer = styled.div`
+export const CountupContainer = styled.div`
     font-family: 'Roboto Mono', monospace;
     font-size: 10rem;
     line-height: 8rem;
@@ -94,13 +94,27 @@ export const CountdownContainer = styled.div`
     }
 `
 
-export const CountdownSeparator = styled.div`
+function blinkingEffect() {
+    return keyframes`
+      50% {
+        opacity: 0;
+      }
+    `;
+}
+
+interface CountupSeparatorProps {
+    isAtiveCycle: boolean
+}
+
+export const CountupSeparator = styled.div<CountupSeparatorProps>`
     padding: 2rem 0;
     color: ${(props) => props.theme["--blue"]};
     width: 4rem;
     overflow: hidden;
     display: flex;
     justify-content: center;
+
+    animation: ${blinkingEffect} ${(props) => props.isAtiveCycle ? "1s linear infinite" : null};
 
     @media(max-width: 280px){
         padding: 0;
