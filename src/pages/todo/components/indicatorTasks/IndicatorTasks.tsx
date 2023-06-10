@@ -1,23 +1,23 @@
 import { TasksProps } from '../../Tasks'
 import { IndicatorTasksContainer } from './IndicatorTasks.styles'
 
-export function IndicatorTasks({ listaToDos }: TasksProps) {
+export function IndicatorTasks({ tasksList }: TasksProps) {
   return (
     <IndicatorTasksContainer>
       <div>
         <p className="tasksCreated">Tasks created</p>
-        <span className="highlightedNumber">{listaToDos.length}</span>
+        <span className="highlightedNumber">{tasksList.length}</span>
       </div>
       <div>
         <p className="tasksDone">Done</p>
         <span className="highlightedNumber">
-          {listaToDos.reduce((accumulator, currentValue) => {
+          {tasksList.reduce((accumulator, currentValue) => {
             if (currentValue.isDone) {
               accumulator += 1
             }
             return accumulator
           }, 0)}{' '}
-          out of {listaToDos.length}
+          out of {tasksList.length}
         </span>
       </div>
     </IndicatorTasksContainer>

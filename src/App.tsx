@@ -3,12 +3,15 @@ import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
+import { ToDoContextProvider } from './context/Task.context'
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <Router />
+        <ToDoContextProvider>
+          <Router />
+        </ToDoContextProvider>
         <GlobalStyle />
       </BrowserRouter>
     </ThemeProvider>

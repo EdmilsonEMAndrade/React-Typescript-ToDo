@@ -1,35 +1,28 @@
 import { Circle, Trash } from '@phosphor-icons/react'
-import { ToDoType } from '../../../../interfaces/todo.interface'
+import { TaskType } from '../../../../interfaces/task.interface'
 import { StyledWithTaskContainer } from './WithTasks.styles'
+import { useContext } from 'react'
+import { TaskContext } from '../../../../context/Task.context'
 
 interface TasksToDoProps {
-  todo: ToDoType
-  onDeleteTask: (id: number) => void
-  onChangeStatusTask: (id: number) => void
+  task: TaskType
 }
 
 export function TasksTodo({
-  todo,
-  onDeleteTask,
-  onChangeStatusTask,
+  task
 }: TasksToDoProps) {
-  function handleChangeStatusTask(idToChangeStatus: number) {
-    onChangeStatusTask(idToChangeStatus)
-  }
+  const { deleteTask, changeStatusTask } = useContext(TaskContext)
 
-  function handleDeleteTask(idToDelete: number) {
-    onDeleteTask(idToDelete)
-  }
   return (
     <StyledWithTaskContainer>
       <Circle
         className="circle"
         size={24}
-        onClick={() => handleChangeStatusTask(todo.id)}
+        onClick={() => changeStatusTask(task.id)}
       />
-      <p>{todo.text}</p>
+      <p>{task.text}</p>
       <Trash
-        onClick={() => handleDeleteTask(todo.id)}
+        onClick={() => deleteTask(task.id)}
         className="trash"
         size={24}
       />

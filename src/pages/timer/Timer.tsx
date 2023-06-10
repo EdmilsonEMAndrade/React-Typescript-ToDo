@@ -1,6 +1,7 @@
 import { Pause, Play, Stop } from "@phosphor-icons/react";
-import { ButtonContainer, CicleAtiveDivButtons, CicleDivButtons, CountupContainer, CountupSeparator, FormContainer, InputMinutesAmount, InputTask, TimerContainer } from "./Timer.styles";
+import { ButtonContainer, CicleAtiveDivButtons, CicleDivButtons, CountupContainer, CountupSeparator, FormContainer, InputTask, TimerContainer } from "./Timer.styles";
 import { useState, FormEvent, useEffect } from "react";
+
 export function Timer() {
   const [countInit, setCountInit] = useState(0);
   const [isAtiveCycle, setIsAtiveCycle] = useState(false);
