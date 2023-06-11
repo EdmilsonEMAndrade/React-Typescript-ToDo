@@ -14,15 +14,15 @@ export function TasksTodo({
   const { deleteTask, changeStatusTask } = useContext(TaskContext)
 
   return (
-    <StyledWithTaskContainer>
+    <StyledWithTaskContainer disabled={task.isDoing}>
       <Circle
         className="circle"
         size={24}
-        onClick={() => changeStatusTask(task.id)}
+        onClick={() => !task.isDoing ? changeStatusTask(task.id) : ""}
       />
       <p>{task.text}</p>
       <Trash
-        onClick={() => deleteTask(task.id)}
+        onClick={() => !task.isDoing ? deleteTask(task.id) : ""}
         className="trash"
         size={24}
       />

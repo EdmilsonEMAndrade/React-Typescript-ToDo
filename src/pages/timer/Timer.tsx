@@ -1,38 +1,71 @@
 import { Pause, Play, Stop } from "@phosphor-icons/react";
 import { ButtonContainer, CicleAtiveDivButtons, CicleDivButtons, CountupContainer, CountupSeparator, FormContainer, InputTask, TimerContainer } from "./Timer.styles";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useContext } from "react";
+import { TaskContext } from "../../context/Task.context";
+import { cleanLocalStorageAtiveCycle, getTimePassed, setLocalStorageAtiveCycle } from "./Timer.utils";
+
 
 export function Timer() {
-  const [countInit, setCountInit] = useState(0);
-  const [isAtiveCycle, setIsAtiveCycle] = useState(false);
-  const [amoutSecondPassed, setAmoutSecondPassed] = useState(0);
+  const { toDoState, doingTask, pauseTask, finishTask } = useContext(TaskContext);
+  const [countInit, setCountInit] = useState(() => {
+    const storedCountInitState = localStorage.getItem('@ativeCycle-task:countInit-1.0.0')
+    return storedCountInitState ? JSON.parse(storedCountInitState) : 0
+  });
+  const [isAtiveCycle, setIsAtiveCycle] = useState(() => {
+    const storedCountInitState = localStorage.getItem('@ativeCycle-task:isAtiveCycle-1.0.0')
+    return storedCountInitState ? JSON.parse(storedCountInitState) : false
+  });
+  const [amoutSecondPassed, setAmoutSecondPassed] = useState(() => {
+    return isAtiveCycle ? Math.floor(((new Date().getTime() - countInit) / 1000)) : 0;
+  });
+  const [taksToDo, setTaksToDo] = useState(() => {
+    const storedTaksToDoState = localStorage.getItem('@ativeCycle-task:taksToDo-1.0.0')
+    return storedTaksToDoState ? JSON.parse(storedTaksToDoState) as string : "";
+  });
 
   function handleConuntup(event: FormEvent): void {
     event.preventDefault()
     setIsAtiveCycle(true);
-    setCountInit(new Date().getTime());
+    const secondsPassed = doingTask(taksToDo)
+    setAmoutSecondPassed(secondsPassed);
+    const countInitState = new Date().getTime() - (secondsPassed * 1000);
+    setCountInit(countInitState);
+    setLocalStorageAtiveCycle({ isAtiveCycle: true, countInit: countInitState, taksToDo })
+  }
+
+  function handleConuntPause(event: FormEvent): void {
+    event.preventDefault()
+    setIsAtiveCycle(false);
+    setCountInit(0);
+    setAmoutSecondPassed(0);
+    cleanLocalStorageAtiveCycle()
+    pauseTask(taksToDo, amoutSecondPassed)
+  }
+
+  function handleCountFinish(event: FormEvent): void {
+    event.preventDefault()
+    setIsAtiveCycle(false);
+    setCountInit(0);
+    setAmoutSecondPassed(0);
+    cleanLocalStorageAtiveCycle()
+    finishTask(taksToDo, amoutSecondPassed)
   }
 
   useEffect(() => {
     let interval: number;
     if (isAtiveCycle) {
       interval = setInterval(() => {
-        setAmoutSecondPassed(Math.floor(((new Date().getTime() - countInit) / 1000)) + 86395);
+        setAmoutSecondPassed(Math.floor(((new Date().getTime() - countInit) / 1000)));
       }, 1000);
     }
     return () => clearInterval(interval);
   }, [isAtiveCycle]);
 
-  const daysAmount = Math.floor(amoutSecondPassed / 86400);
-  const hoursAmount = Math.floor((amoutSecondPassed / 3600) - (daysAmount * 24));
-  const minutesAmount = Math.floor((amoutSecondPassed / 60) - (hoursAmount * 60) - (daysAmount * 24 * 60));
-  const secondsAmount = amoutSecondPassed % 60;
+  function handleTypingNewTask(event: React.ChangeEvent<HTMLInputElement>) {
+    setTaksToDo(event.target.value)
+  }
 
-  const days = String(daysAmount);
-  const hours = daysAmount > 0 ? String(hoursAmount).padStart(2, "0") : String(hoursAmount);
-  const minutes = String(minutesAmount).padStart(2, "0");
-  const seconds = String(secondsAmount).padStart(2, "0");
-
+  const { days, hours, minutes, seconds, daysAmount, hoursAmount } = getTimePassed(amoutSecondPassed);
 
   return (
     <TimerContainer>
@@ -45,11 +78,16 @@ export function Timer() {
             placeholder="select or crate a task"
             id="task"
             list="taksToDo"
+            onChange={handleTypingNewTask}
+            value={taksToDo}
+            disabled={isAtiveCycle}
+            autoComplete="none"
           />
 
           <datalist id="taksToDo">
-            <option value="task1" />
-            <option value="task2" />
+            {toDoState.map((task) => {
+              return task.isDone ? null : <option key={task.id} value={task.text} />
+            })}
           </datalist>
 
         </FormContainer>
@@ -67,17 +105,17 @@ export function Timer() {
         </CountupContainer>
         <CicleDivButtons>
           <div>
-            <ButtonContainer color="green" isAtiveCycle={!isAtiveCycle} type="submit" onClick={handleConuntup} disabled={isAtiveCycle}>
+            <ButtonContainer color="green" isAtiveCycle={!isAtiveCycle} type="submit" onClick={handleConuntup} disabled={isAtiveCycle || taksToDo.length == 0}>
               <Play size={24} />
               Play
             </ButtonContainer>
           </div>
           <CicleAtiveDivButtons>
-            <ButtonContainer color="yellow" isAtiveCycle={isAtiveCycle} type="submit" onClick={handleConuntup}>
+            <ButtonContainer color="yellow" isAtiveCycle={isAtiveCycle} type="submit" onClick={handleConuntPause}>
               <Pause size={24} />
               Pause
             </ButtonContainer>
-            <ButtonContainer color="red" isAtiveCycle={isAtiveCycle} type="submit" onClick={handleConuntup}>
+            <ButtonContainer color="red" isAtiveCycle={isAtiveCycle} type="submit" onClick={handleCountFinish}>
               <Stop size={24} />
               Fineshed
             </ButtonContainer>

@@ -37,6 +37,7 @@ export const FormContainer = styled.form`
     color: ${(props) => props.theme['--white']};
     transition: background-color 0.5s;
     gap: 0.2rem;
+    cursor: pointer;
   }
 
   button:hover {

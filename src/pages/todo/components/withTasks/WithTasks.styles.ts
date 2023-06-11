@@ -1,6 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const WithTaskContainer = styled.div`
+interface WithTaskContainerProps {
+  disabled: boolean
+}
+
+export const WithTaskContainer = styled.div<WithTaskContainerProps>`
   width: ${(props) => props.theme['--width-center']};
   background: ${(props) => props.theme['--gray-400']};
   border-radius: 8px;
@@ -20,22 +24,33 @@ export const WithTaskContainer = styled.div`
     color: ${(props) => props.theme['--blue']};
     margin-left: 0.5rem;
   }
-  .circle:hover {
-    color: ${(props) => props.theme['--blue-dark']};
-  }
   .checkCircle {
     margin-left: 0.5rem;
     color: ${(props) => props.theme['--purple']};
   }
-  .checkCircle:hover {
-    color: ${(props) => props.theme['--purple-dark']};
-  }
   .trash {
     margin-right: 0.5rem;
   }
-  .trash:hover {
-    color: ${(props) => props.theme['--danger']};
-  }
+
+  ${(props) =>
+    !props.disabled &&
+    css`
+      cursor: pointer;
+      .circle:hover {
+        color: ${(props) => props.theme['--blue-dark']};
+      }
+
+      .checkCircle:hover {
+        color: ${(props) => props.theme['--purple-dark']};
+      }
+
+      .trash:hover {
+        color: ${(props) => props.theme['--danger']};
+      }
+    `}
+  
+  ${(props) => props.disabled && 'cursor: not-allowed;'}
+
 `
 
 export const StyledWithTaskContainer = styled(WithTaskContainer)`

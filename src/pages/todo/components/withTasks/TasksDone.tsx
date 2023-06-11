@@ -12,7 +12,7 @@ export function TasksDone({ task }: TasksDoneProps) {
   const { deleteTask, changeStatusTask } = useContext(TaskContext)
 
   return (
-    <StyledWithTaskContainer>
+    <StyledWithTaskContainer disabled={task.isDoing}>
       <CheckCircle
         className="checkCircle"
         size={24}
