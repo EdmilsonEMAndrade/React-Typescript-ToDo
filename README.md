@@ -3,13 +3,14 @@
 
 # About the project
 
-This is a Todo App built using React and TypeScript. The app allows users to manage their daily tasks and keep track of their progress.
+This is a Todo app built using React and TypeScript. The application allows users to manage their daily tasks and track their progress, in addition to being able to control the time spent on each task.
 
 ## Features
 
 - Add new tasks
 - Mark tasks as completed
 - Delete tasks
+- Time control
 - Responsive design for seamless usage across different devices
 
 ## Docker
@@ -25,9 +26,12 @@ This is a Todo App built using React and TypeScript. The app allows users to man
 
 <img src="./src/assets/screen_no_tasks.png"  height="300" alt="image demonstrating the page without tasks"/>
 <img src="./src/assets/screen_with_tasks.png"  height="300" alt="image demonstrating the page with tasks"/>
+<img src="./src/assets/screen_timer.png"  height="300" alt="image demonstrating the page timer with counter reset"/>
+<img src="./src/assets/screen_timer_count.png"  height="300" alt="image demonstrating the page timer counting the time"/>
 
 # Technologies used
 - Typescript
+- React
 - Node
 - HTML
 - CSS

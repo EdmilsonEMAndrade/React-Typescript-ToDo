@@ -14,14 +14,15 @@ body{
 }
 
 body, input, textarea, button{
-    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
 }
 
 :focus{
     outline: transparent;
-    box-shadow: 0 0 0 2px ${(props) => props.theme['--gray-100']};
+    box-shadow: 0 0 0 2px ${(props) => props.theme['--blue-dark']};
 }
 
 `

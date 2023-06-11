@@ -10,10 +10,20 @@ export const defaultTheme = {
   '--gray-900': '#0D0D0D',
 
   '--danger': '#E25858',
+  '--red': '#FF0000',
+  '--red-dark': '#8B0000',
+
+  '--green-dark': '#015F43',
+  '--green': '#00B37E',
 
   '--blue-dark': '#1E6F9F',
   '--blue': '#4EA8DE',
 
   '--purple-dark': '#5E60CE',
   '--purple': '#8284FA',
+
+  '--yellow': '#FCD12A',
+  '--yellow-dark': '#8B8000',
+
+  '--width-center': 'calc(55vw + 5.8rem)'
 }

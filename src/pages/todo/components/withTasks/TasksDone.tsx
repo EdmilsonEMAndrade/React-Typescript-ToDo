@@ -1,39 +1,34 @@
 import { CheckCircle, Trash } from '@phosphor-icons/react'
-import { ToDoType } from '../../../../interfaces/todo.interface'
+import { TaskType } from '../../../../interfaces/task.interface'
 import { StyledWithTaskContainer } from './WithTasks.styles'
+import { useContext } from 'react'
+import { TaskContext } from '../../../../context/Task.context'
+import { getExpendTime } from '../../../timer/Timer.utils'
 
 interface TasksDoneProps {
-  todo: ToDoType
-  onDeleteTask: (id: number) => void
-  onChangeStatusTask: (id: number) => void
+  task: TaskType
 }
 
-export function TasksDone({
-  todo,
-  onDeleteTask,
-  onChangeStatusTask,
-}: TasksDoneProps) {
-  function handleChangeStatusTask(idToChangeStatus: number) {
-    onChangeStatusTask(idToChangeStatus)
-  }
+export function TasksDone({ task }: TasksDoneProps) {
+  const { deleteTask, changeStatusTask } = useContext(TaskContext)
 
-  function handleDeleteTask(idToDelete: number) {
-    onDeleteTask(idToDelete)
-  }
   return (
-    <StyledWithTaskContainer>
+    <StyledWithTaskContainer disabled={task.isDoing}>
       <CheckCircle
         className="checkCircle"
         size={24}
         weight="fill"
-        onClick={() => handleChangeStatusTask(todo.id)}
+        onClick={() => changeStatusTask(task.id)}
       />
-      <del>{todo.text}</del>
-      <Trash
-        onClick={() => handleDeleteTask(todo.id)}
-        className="trash"
-        size={24}
-      />
+      <del>{task.text}</del>
+      <div>
+        {task.amoutSecondPassed ? <span>{getExpendTime(task.amoutSecondPassed)}</span> : null}
+        <Trash
+          onClick={() => !task.isDoing ? deleteTask(task.id) : ""}
+          className="trash"
+          size={24}
+        />
+      </div>
     </StyledWithTaskContainer>
   )
 }

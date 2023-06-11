@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const WithoutTaskContainer = styled.div`
-  width: calc(55vw + 5.8rem);
+  width: ${(props) => props.theme['--width-center']};
   display: flex;
   align-items: center;
   justify-content: flex-end;
