@@ -18,6 +18,17 @@ export function getTimePassed(amoutSecondPassed: number) {
     return { days, hours, minutes, seconds, daysAmount, hoursAmount };
 }
 
+export function getExpendTime(amoutSecondPassed: number) {
+    const { days, hours, minutes, seconds, daysAmount, hoursAmount } = getTimePassed(amoutSecondPassed);
+    let expendTime = "";
+    if (daysAmount > 0) {
+        expendTime += days + "d " + hours + "h ";
+    } else if (hoursAmount > 0) {
+        expendTime += hours + "h ";
+    }
+    return expendTime + minutes + "min " + seconds + "s";
+}
+
 export function setLocalStorageAtiveCycle(ativeCycle: AtiveCycle) {
     localStorage.setItem('@ativeCycle-task:isAtiveCycle-1.0.0', JSON.stringify(ativeCycle.isAtiveCycle))
     localStorage.setItem('@ativeCycle-task:countInit-1.0.0', JSON.stringify(ativeCycle.countInit));

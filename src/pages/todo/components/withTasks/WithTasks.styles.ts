@@ -12,7 +12,7 @@ export const WithTaskContainer = styled.div<WithTaskContainerProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  gap: .5rem;
   p,
   del {
     text-align: start;
@@ -31,7 +31,11 @@ export const WithTaskContainer = styled.div<WithTaskContainerProps>`
   .trash {
     margin-right: 0.5rem;
   }
-
+  div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   ${(props) =>
     !props.disabled &&
     css`

@@ -3,6 +3,7 @@ import { TaskType } from '../../../../interfaces/task.interface'
 import { StyledWithTaskContainer } from './WithTasks.styles'
 import { useContext } from 'react'
 import { TaskContext } from '../../../../context/Task.context'
+import { getExpendTime } from '../../../timer/Timer.utils'
 
 interface TasksToDoProps {
   task: TaskType
@@ -21,11 +22,14 @@ export function TasksTodo({
         onClick={() => !task.isDoing ? changeStatusTask(task.id) : ""}
       />
       <p>{task.text}</p>
-      <Trash
-        onClick={() => !task.isDoing ? deleteTask(task.id) : ""}
-        className="trash"
-        size={24}
-      />
+      <div>
+        {task.amoutSecondPassed ? <span>{getExpendTime(task.amoutSecondPassed)}</span> : null}
+        <Trash
+          onClick={() => !task.isDoing ? deleteTask(task.id) : ""}
+          className="trash"
+          size={24}
+        />
+      </div>
     </StyledWithTaskContainer>
   )
 }
