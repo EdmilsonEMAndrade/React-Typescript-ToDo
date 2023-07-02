@@ -1,8 +1,6 @@
-import { PlusCircle } from '@phosphor-icons/react'
+import { CheckCircle, Circle, PlusCircle } from '@phosphor-icons/react'
 import { FormEvent, useState, useContext } from 'react'
 
-import { TasksTodo } from './components/withTasks/TasksToDo'
-import { TasksDone } from './components/withTasks/TasksDone'
 import { WithoutTasks } from './components/withoutTasks/WithoutTasks'
 
 import { FormContainer, BodyTaskContainer } from './Tasks.styles'
@@ -10,6 +8,7 @@ import { FormContainer, BodyTaskContainer } from './Tasks.styles'
 import { TaskType } from '../../interfaces/task.interface'
 import { IndicatorTasks } from './components/indicatorTasks/IndicatorTasks'
 import { TaskContext } from '../../context/Task.context'
+import { WithTasks } from './components/WithTask'
 
 export interface TasksProps {
   tasksList: TaskType[]
@@ -60,15 +59,17 @@ export function Tasks() {
           ) : (
             toDoState.map((task) => {
               return !task.isDone ? (
-                <TasksTodo
-                  key={task.id}
-                  task={task}
-                />
+                <WithTasks.Root task={task} key={task.id}>
+                  <WithTasks.Icon task={task} icon={Circle} classeName='circle' />
+                  <p>{task.text}</p>
+                  <WithTasks.Trash task={task} />
+                </WithTasks.Root>
               ) : (
-                <TasksDone
-                  key={task.id}
-                  task={task}
-                />
+                <WithTasks.Root task={task} key={task.id}>
+                  <WithTasks.Icon task={task} icon={CheckCircle} classeName='checkCircle' />
+                  <del>{task.text}</del>
+                  <WithTasks.Trash task={task} />
+                </WithTasks.Root>
               )
             })
           )}
